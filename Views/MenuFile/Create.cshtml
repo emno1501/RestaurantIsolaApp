@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Ladda upp meny";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Ladda upp meny</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Upload" enctype="multipart/form-data">
+            <div class="form-group">
+
+                <label class="control-label" for="file">Ladda upp fil: </label>
+                <input class="form-control" id="file" name="file" type="file" />
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ladda upp" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Tillbaka till alla uppladdningar</a>
+</div>
+

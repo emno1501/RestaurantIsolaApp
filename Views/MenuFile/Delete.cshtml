@@ -1,0 +1,27 @@
+﻿@model RestaurantIsolaApp.Models.MenuFile
+
+@{
+    ViewData["Title"] = "Ta bort menyfil";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Ta bort</h1>
+
+<h3>Vill du verkligen ta bort denna?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Fil
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+        <a asp-action="Index">Tillbaka</a>
+    </form>
+</div>

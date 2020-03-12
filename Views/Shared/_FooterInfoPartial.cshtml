@@ -1,0 +1,28 @@
+﻿
+<div class="openHours">
+    <h4>Öppettider</h4>
+    <p>
+        @{
+            string str = Convert.ToString(ViewBag.restaurantInfo.OpenHours);
+            string[] openHoursList = str.Split(", ");
+        }
+        @foreach (string s in openHoursList)
+        {
+        @s<br />
+        }
+    </p>
+</div>
+<div class="contact">
+    <h4>Kontakt</h4>
+    <p>
+        @ViewBag.restaurantInfo.PhoneNr<br />
+        <a href="mailto:@ViewBag.restaurantInfo.Email">@ViewBag.restaurantInfo.Email</a>
+    </p>
+</div>
+<div class="adress">
+    <h4>Adress</h4>
+    <p>
+        @ViewBag.restaurantInfo.Adress<br />
+        @ViewBag.restaurantInfo.PostalCode @ViewBag.restaurantInfo.City
+    </p>
+</div>

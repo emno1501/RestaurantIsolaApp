@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RestaurantIsolaApp.Models.MenuItem>
+
+@{
+    ViewData["Title"] = "Meny - rätter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="headerBox smallHeader">
+    <div class="downArrowBox">
+        <img src="~/images/down.svg" class="downArrow"/>
+    </div>
+</div>
+<div id="menuBackground">
+    <h1>Meny</h1>
+    <div id="menuContainer">
+        <div id="starters">
+            <h2>Förrätter</h2>
+            @foreach (var item in Model)
+            {
+                if (item.DishType == "Förrätt")
+                {
+                    <div class="menuItem">
+                        <h3>@Html.DisplayFor(modelItem => item.DishName) <span>@Html.DisplayFor(modelItem => item.Price) kr</span></h3>
+                        <p>@Html.DisplayFor(modelItem => item.DishDescription)</p>
+                    </div>
+                }
+            }
+        </div>
+        <div id="mains">
+            <h2>Varmrätter</h2>
+            @foreach (var item in Model)
+            {
+                if (item.DishType == "Varmrätt")
+                {
+                    <div class="menuItem">
+                        <h3>@Html.DisplayFor(modelItem => item.DishName) <span>@Html.DisplayFor(modelItem => item.Price) kr</span></h3>
+                        <p>@Html.DisplayFor(modelItem => item.DishDescription)</p>
+                    </div>
+                }
+            }
+        </div>
+        <div id="desserts">
+            <h2>Efterrätter</h2>
+            @foreach (var item in Model)
+            {
+                if (item.DishType == "Efterrätt")
+                {
+                    <div class="menuItem">
+                        <h3>@Html.DisplayFor(modelItem => item.DishName) <span>@Html.DisplayFor(modelItem => item.Price) kr</span></h3>
+                        <p>@Html.DisplayFor(modelItem => item.DishDescription)</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<div id="fullMenu">
+    <p>Se den fullständiga menyn:</p>
+    <a asp-action="Index" asp-route-id="@ViewBag.MenuFile" class="btnGold">Meny - PDF</a>
+
+</div>

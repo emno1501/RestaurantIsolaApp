@@ -1,0 +1,62 @@
+﻿@model IEnumerable<RestaurantIsolaApp.Models.Booking>
+
+@{
+    ViewData["Title"] = "Bokningar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Bokningar</h1>
+
+<p>
+    <a asp-action="AdminCreate">Lägg till bokning</a>
+</p>
+<div class="tableBox">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Namn
+                </th>
+                <th>
+                    Antal personer
+                </th>
+                <th>
+                    Datum
+                </th>
+                <th>
+                    Tid
+                </th>
+                <th>
+                    Restaurang
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumbOfPersons)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookedTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Restaurant.City)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Ändra</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,64 @@
+﻿@model RestaurantIsolaApp.Models.Booking
+
+@{
+    ViewData["Title"] = "Boka bord";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="headerBox smallHeader">
+    <div class="downArrowBox">
+        <img src="~/images/down.svg" class="downArrow"/>
+    </div>
+</div>
+<div id="bookingBox">
+    <h1>Boka bord</h1>
+
+    <div>
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FullName" class="control-label">Fullständigt namn</label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">E-post</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNr" class="control-label">Telefonnummer</label>
+                    <input asp-for="PhoneNr" class="form-control" />
+                    <span asp-validation-for="PhoneNr" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumbOfPersons" class="control-label">Antal personer</label>
+                    <input asp-for="NumbOfPersons" class="form-control" />
+                    <span asp-validation-for="NumbOfPersons" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BookedDate" class="control-label">Datum</label>
+                    <input asp-for="BookedDate" class="form-control" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="BookedDate" class="text-danger"></span>
+                    <span class="text-danger">@ViewData["noValidDay"]</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BookedTime" class="control-label">Tid</label>
+                    <input asp-for="BookedTime" class="form-control" value="16:00" min="16:00" max="22:00" step="900" />
+                    <span asp-validation-for="BookedTime" class="text-danger"></span>
+                </div>
+                <div class="form-group restaurant">
+                    <label asp-for="RestaurantId" class="control-label">Restaurang</label>
+                    <select asp-for="RestaurantId" class="form-control" asp-items="ViewBag.RestaurantId"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Boka" class="btn btn-primary booking" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

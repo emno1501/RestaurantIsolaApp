@@ -1,0 +1,521 @@
+﻿html {
+    font-size: 62.5%;
+}
+body {
+    margin: 0;
+}
+p, a, label, input, textarea, select, .btn, .form-control, td, th, dd, dt {
+    font-family: "Lato", sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.6em;
+    font-weight: 300;
+}
+th, .btn, dt {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+h1 {
+    font-family: "Source Serif Pro", sans-serif;
+    font-size: 4.5rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+h2, h3, h4 {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+h2 {
+    font-size: 3rem;
+}
+h3 {
+    font-size: 1.8rem;
+}
+h4 {
+    font-size: 1.5rem;
+}
+.btnGold, .btnBeige, .btnGold:visited, .btnBeige:visited {
+    padding: 12px 30px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: black;
+}
+.btnGold:hover, .btnBeige:hover {
+    text-decoration: none;
+}
+.btnGold {
+    background-color: #e8c458;
+}
+.btnGold:hover {
+    color: black;
+}
+.btnBeige {
+    background-color: #f2f2ed;
+}
+
+.adminMain {
+    margin-left: 250px;
+}
+.restaurantHeader {
+    padding: 15px 0;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: auto;
+}
+nav {
+    z-index: 10;
+}
+.restaurantNav {
+    margin-right: 35px;
+    position: relative;
+    top: 0;
+}
+.restaurantNav ul {
+    float: right;
+}
+.restaurantNav li {
+    list-style: none;
+    display: inline;
+}
+.restaurantNav li a, .restaurantNav li a:visited {
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 1.6rem;
+    margin-left: 30px;
+}
+.restaurantNav li a:hover {
+    text-decoration: none;
+    color: #e8c458;
+}
+#hamburger {
+    display: none;
+}
+.logo {
+    width: 180px;
+    height: auto;
+    margin-left: 35px;
+    float: left;
+}
+.headerBox {
+    background-image: url(../images/restaurant.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 55%;
+    background-attachment: fixed;
+    height: 360px;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}
+.downArrowBox {
+    width: 50px;
+    margin: 0 auto;
+    padding-top: 250px;
+    animation-name: up-down;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+@keyframes up-down {
+    0% {padding-top: 250px;}
+    50% {padding-top: 270px;}
+    100% {padding-top: 250px;}
+}
+.downArrow {
+    width: 50px;
+    height: auto;
+}
+.aboutBox {
+    padding: 60px;
+    width: 100%;
+    background-color: #f2f2ed;
+}
+.aboutBox h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.aboutBox p {
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+}
+.betweenBoxes {
+    background-image: url(../images/restaurant2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100px;
+}
+.startMenuBox {
+    background-color: #598f9c;
+    padding: 60px 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+.startMenuBox p {
+    max-width: 450px;
+    margin: 0 auto 30px auto;
+}
+.startMenuBox .btnGold:hover {
+    background-color: #f2f2ed;
+    color: black;
+}
+.startBookingBox {
+    background-image: url(../images/restaurant.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 70px;
+    text-align: center;
+    color: white;
+}
+.startBookingBox h2 {
+    margin-bottom: 40px;
+}
+.startBookingBox .btnBeige:hover {
+    background-color: #598f9c;
+    color: white;
+}
+
+footer {
+    background-color: #2e2e3b;
+    overflow: auto;
+    padding: 20px 0 15px 0;
+    position: relative;
+}
+footer p, footer a, footer h4 {
+    color: white;
+}
+.openHours, .copyright {
+    margin-left: 35px;
+}
+.openHours, .contact, .adress {
+    float: left;
+    margin-right: 65px;
+}
+.openHours span {
+    padding-left: 30px;
+    float: right;
+}
+.copyright {
+    clear: both;
+    padding-top: 30px;
+}
+.copyright p {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+.toTop {
+    background-color: #e8c458;
+    padding: 10px;
+    position: absolute;
+    right: 35px;
+    top: 20px;
+}
+.toTop:hover {
+    background-color: #598f9c;
+}
+.toTop img {
+    width: 30px;
+    height: auto;
+}
+@media screen and (max-width: 750px) {
+    #hamburger {
+        display: block;
+        width: 45px;
+        height: auto;
+        position: absolute;
+        right: -15px;
+        z-index: 10;
+    }
+    .openMenu #hamburger {
+        right: 20px;
+    }
+    .defaultMenu ul {
+        display: none;
+    }
+    .openMenu {
+        width: 100%;
+    }
+    .openMenu ul {
+        display: block;
+        background-color: #e8c458;
+        padding: 80px 40px 40px 40px;
+        width: 100%;
+        position:relative;
+        top: -90px;
+        
+    }
+    .openMenu li {
+        display: block;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .restaurantNav li a, .restaurantNav li a:visited {
+        color: black;
+        margin: 0;
+    }
+    .logo {
+        width: 150px;
+        margin-left: 20px;
+    }
+    .headerBox {
+        height: 300px;
+        background-position: center bottom;
+    }
+    .headerBox .downArrowBox {
+        padding-top: 200px;
+        animation-name: up-down-mobile;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+    @keyframes up-down-mobile {
+        0% {padding-top: 200px;}
+        50% {padding-top: 220px;}
+        100% {padding-top: 200px;}
+    }
+    .aboutBox p, .startMenuBox p {
+        width: 90%;
+        max-width: 400px;
+    }
+    .openHours, .contact, .adress {
+        float: none;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    .copyright {
+        padding: 0;
+        margin-left: 20px;
+    }
+    .toTop {
+        top: unset;
+        bottom: 25px;
+        right: 20px;
+    }
+}
+
+/* Menysida */
+.smallHeader {
+    height: 200px;
+}
+.smallHeader .downArrow {
+    display: none;
+}
+#menuBackground {
+    background-color: #f2f2ed;
+    width: 100%;
+    padding: 70px 0;
+}
+#menuBackground h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+#menuContainer {
+    width: 80%;
+    margin: 0 auto;
+    overflow: auto;
+}
+#menuContainer h2 {
+    font-family: "Source Serif Pro";
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+}
+#menuContainer h3 span {
+    font-weight: 300;
+}
+#starters, #mains, #desserts {
+    float: left;
+    width: 33%;
+    padding: 0 3%;
+}
+#starters div, #mains div, #desserts div {
+    margin-bottom: 20px;
+}
+#fullMenu {
+    background-color: #598f9c;
+    width: 100%;
+    padding: 40px 0 50px 0;
+    text-align: center;
+}
+#fullMenu p {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+}
+#fullMenu .btnGold:hover {
+    background-color: #f2f2ed;
+}
+@media screen and (max-width: 960px) {
+    #starters, #mains, #desserts {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 750px) {
+    #starters, #mains, #desserts {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Bokningssida */
+#bookingBox {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+#bookingBox h1 {
+    margin-left: 15px;
+}
+input.btn:hover, .form-group .btn:hover, .btn-primary:hover, a.btn:hover {
+    background-color: #2e2e3b;
+    color: white;
+}
+.restaurant {
+    display: none;
+}
+.booking {
+    background-color: #e8c458;
+    color: black;
+}
+.confirmationBox { /*Bokningsbekräftelse*/
+    height: 300px;
+    width: 100%;
+    padding-top: 60px;
+    text-align: center;
+}
+@media screen and (max-width: 750px) {
+    .confirmationBox h1 {
+        font-size: 3rem;
+    }
+    .confirmationBox p {
+        max-width: 80%;
+        width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* Admin-sidor */
+.adminNav {
+    position: relative;
+}
+.logoAdmin {
+    width: 120px;
+    height: auto;
+    float: left;
+}
+.adminNav .navbar-nav {
+    position: absolute;
+    right: 0;
+}
+.adminNav .navbar-nav li {
+    margin-left: 20px;
+}
+.navbar-nav a, .navbar-nav button {
+    font-weight: bold;
+}
+.adminLeftNav {
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    padding-top: 50px;
+    padding-right: 50px;
+    border-right: 1px solid #dee2e6;
+    z-index: 1;
+}
+#adminNavDown {
+    display: none;
+}
+#welcomeAdmin {
+    text-align: center;
+    padding-top: 100px;
+}
+.nav-pills a {
+    color: black;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+/*.nav-pills .nav-link.active {
+    background-color: #598f9c;
+}*/
+#delete {
+    color: white;
+    text-decoration: none;
+}
+.adminBtn .btn {
+    color: white;
+    text-decoration: none;
+}
+@media screen and (max-width: 750px) {
+    .container {
+        max-width: 100%;
+    }
+    #welcomeAdmin {
+        font-size: 2rem;
+    }
+    .adminMain {
+        margin-left: 0;
+        margin-top: 50px;
+    }
+    .adminMain h1 {
+        font-size: 3.5rem;
+    }
+    .adminLeftNav {
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+        bottom: unset;
+        width: 100%;
+        padding-top: 35px;
+        padding-right: 0;
+        left: 0;
+        overflow: auto;
+    }
+    .adminLeftNav h2 {
+        font-size: 2rem;
+        margin-left: 25px;
+        float:left;
+    }
+    #adminNavDown {
+        display: block;
+        width: 25px;
+        height: auto;
+        float: right;
+        margin-right: 25px;
+        padding-top: 5px;
+    }
+    .leftNavDefault ul {
+        display: none;
+    }
+    .leftNavDown ul {
+        display: block;
+        background-color: white;
+        padding-top: 40px;
+        padding-left: 25px;
+    }
+    .tableBox {
+        overflow-x: auto;
+    }
+}
+@media screen and (max-width: 576px) {
+    .logoAdmin {
+        width: 80px;
+        position: absolute;
+        right: 0;
+        top: -25px;
+    }
+    .adminNav .navbar-nav {
+        position: static;
+        float: right;
+        text-align: right;
+        margin-top: 10px;
+    }
+    .adminLeftNav {
+        padding-top: 15px;
+    }
+}

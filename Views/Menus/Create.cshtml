@@ -1,0 +1,43 @@
+﻿@model RestaurantIsolaApp.Models.Menu
+
+@{
+    ViewData["Title"] = "Lägg till meny";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Lägg till meny</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MenuName" class="control-label">MenyNamn</label>
+                <input asp-for="MenuName" class="form-control" />
+                <span asp-validation-for="MenuName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsingMenu" class="control-label">Aktuell meny</label>
+                @Html.CheckBoxFor(m => m.UsingMenu)
+                <span asp-validation-for="MenuName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuFileId" class="control-label">PDF</label>
+                <select asp-for="MenuFileId" class="form-control" asp-items="ViewBag.MenuFile"></select>
+                <span asp-validation-for="MenuFileId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lägg till" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Tillbaka till menyer</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

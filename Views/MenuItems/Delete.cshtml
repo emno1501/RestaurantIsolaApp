@@ -1,0 +1,51 @@
+﻿@model RestaurantIsolaApp.Models.MenuItem
+
+@{
+    ViewData["Title"] = "Ta bort rätt";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Ta bort rätt</h1>
+
+<h3>Vill du verkligen ta bort rätten?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Namn på rätt
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DishName)
+        </dd>
+        <dt class = "col-sm-2">
+            Typ av rätt
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DishType)
+        </dd>
+        <dt class = "col-sm-2">
+            Beskrivning
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DishDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            Pris
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            Meny
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Menu.MenuName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+        <a asp-action="AdminIndex">Tillbaka till alla rätter</a>
+    </form>
+</div>

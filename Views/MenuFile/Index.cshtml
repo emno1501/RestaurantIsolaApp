@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RestaurantIsolaApp.Models.MenuFile>
+
+@{
+    ViewData["Title"] = "Meny-filer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Meny-filer</h1>
+
+<p class="form-group adminBtn">
+    <a asp-controller="Menus" asp-action="Index" class="btn btn-primary">Tillbaka</a>
+</p>
+<p>
+    <a asp-action="Create">Ladda upp ny meny</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Fil
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                <a asp-action="Index" asp-route-id="@item.Id">Ladda ned</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

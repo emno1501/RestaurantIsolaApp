@@ -1,0 +1,40 @@
+﻿@model RestaurantIsolaApp.Models.Menu
+
+@{
+    ViewData["Title"] = "Ta bort meny";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Ta bort meny</h1>
+
+<h3>Vill du verkligen ta bort den här menyn?</h3>
+<div>
+    <h4>Menu</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Menynamn
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MenuName)
+        </dd>
+        <dt class="col-sm-2">
+            Aktuell meny
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UsingMenu)
+        </dd>
+        <dt class="col-sm-2">
+            PDF
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MenuFile.FileName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+        <a asp-action="Index">Tillbaka till menyer</a>
+    </form>
+</div>

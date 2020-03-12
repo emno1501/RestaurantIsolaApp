@@ -1,0 +1,57 @@
+﻿@model IEnumerable<RestaurantIsolaApp.Models.Menu>
+
+@{
+    ViewData["Title"] = "Menyer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Menyer</h1>
+
+<p class="form-group adminBtn">
+    <a asp-controller="MenuItems" asp-action="AdminIndex" class="btn btn-primary">Se alla rätter</a>
+</p>
+<p class="form-group adminBtn">
+    <a asp-controller="MenuFile" asp-action="Index" class="btn btn-primary">Ladda upp PDF med meny</a>
+</p>
+<p>
+    <a asp-action="Create">Skapa ny meny</a>
+</p>
+<div class="tableBox">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Menynamn
+                </th>
+                <th>
+                    Aktuell meny
+                </th>
+                <th>
+                    PDF
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsingMenu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuFile.FileName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a> |
+                        <a asp-controller="MenuItems" asp-action="AdminIndex" asp-route-id="@item.Id">Visa menyns rätter</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

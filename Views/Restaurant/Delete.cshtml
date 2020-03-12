@@ -1,0 +1,60 @@
+﻿@model RestaurantIsolaApp.Models.Restaurant
+
+@{
+    ViewData["Title"] = "Ta bort restaurang";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Ta bort</h1>
+
+<h3>Vill du verkligen ta bort denna restaurang?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Stad
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+        <dt class = "col-sm-2">
+            Postkod
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+        <dt class = "col-sm-2">
+            Öppettider
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OpenHours)
+        </dd>
+        <dt class = "col-sm-2">
+            Telefonnummer
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNr)
+        </dd>
+        <dt class = "col-sm-2">
+            E-post
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            Meny
+        </dt>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+        <a asp-action="Index">Tillbaka till restauranger</a>
+    </form>
+</div>

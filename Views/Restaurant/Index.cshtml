@@ -1,0 +1,68 @@
+﻿@model IEnumerable<RestaurantIsolaApp.Models.Restaurant>
+
+@{
+    ViewData["Title"] = "Restauranger";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Restauranger</h1>
+
+<p>
+    <a asp-action="Create">Lägg till restaurang</a>
+</p>
+<div class="tableBox">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Stad
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adress)
+                </th>
+                <th>
+                    Postkod
+                </th>
+                <th>
+                    Öppettider
+                </th>
+                <th>
+                    Telefonnummer
+                </th>
+                <th>
+                    E-post
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostalCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OpenHours)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,53 @@
+﻿@model RestaurantIsolaApp.Models.MenuItem
+
+@{
+    ViewData["Title"] = "Redigera rätt";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Redigera rätt</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="DishName" class="control-label">Namn på rätt</label>
+                <input asp-for="DishName" class="form-control" />
+                <span asp-validation-for="DishName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DishType" class="control-label">Typ av rätt</label>
+                <select asp-for="DishType" class="form-control" asp-items="ViewBag.Dishtypes"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DishDescription" class="control-label">Beskrivning</label>
+                <input asp-for="DishDescription" class="form-control" />
+                <span asp-validation-for="DishDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Pris</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuId" class="control-label">Meny</label>
+                <select asp-for="MenuId" class="form-control" asp-items="ViewBag.MenuId"></select>
+                <span asp-validation-for="MenuId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Spara" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AdminIndex">Tillbaka till alla rätter</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

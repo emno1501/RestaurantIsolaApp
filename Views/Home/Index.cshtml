@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Start - Isola Restaurang & Bar";
+}
+
+<div class="headerBox">
+    <div class="downArrowBox">
+        <img src="~/images/down.svg" class="downArrow" />
+    </div>
+</div>
+<div class="aboutBox">
+    <h1>Välkommen!</h1>
+    <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.
+    </p>
+</div>
+<div class="betweenBoxes"></div>
+<div class="startMenuBox">
+    <h2>Vår meny</h2>
+    <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.
+    </p>
+    <div class="btnContainer">
+        <a asp-controller="MenuItems" asp-action="Index" class="btnGold">Meny</a>
+    </div>
+</div>
+<div class="startBookingBox">
+    <h2>Boka bord</h2>
+    <div class="btnContainer">
+        <a asp-controller="Booking" asp-action="Create" class="btnBeige">Boka</a>
+    </div>
+</div>

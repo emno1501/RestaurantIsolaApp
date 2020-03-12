@@ -1,0 +1,65 @@
+﻿@model IEnumerable<RestaurantIsolaApp.Models.MenuItem>
+
+@{
+    ViewData["Title"] = "Rätter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Rätter</h1>
+
+<p class="form-group adminBtn">
+    <a asp-controller="Menus" asp-action="Index" class="btn btn-primary">Tillbaka till menyer</a>
+</p>
+<p>
+    <a asp-action="Create">Lägg till ny rätt</a>
+</p>
+<div class="tableBox">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Typ
+                </th>
+                <th>
+                    Namn på rätt
+                </th>
+                <th>
+                    Beskrivning
+                </th>
+                <th>
+                    Pris
+                </th>
+                <th>
+                    Meny
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DishType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DishName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DishDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Menu.MenuName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Ändra</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
