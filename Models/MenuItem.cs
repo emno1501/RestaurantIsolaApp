@@ -18,6 +18,7 @@ namespace RestaurantIsolaApp.Models
         public double? Price { get; set; }
         public int MenuId { get; set; }
         public Menu Menu { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.Now;
         public MenuItem()
         {
 

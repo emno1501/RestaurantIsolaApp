@@ -19,11 +19,14 @@ namespace RestaurantIsolaApp.Models
         [Required(ErrorMessage = "Fyll i antal personer")]
         public int NumbOfPersons { get; set; }
         [Required(ErrorMessage = "Fyll i datum för bokningen")]
+
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime BookedDate { get; set; }
         [Required(ErrorMessage = "Fyll i tid för bokningen")]
 
         [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         public DateTime BookedTime { get; set; }
         public int RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }

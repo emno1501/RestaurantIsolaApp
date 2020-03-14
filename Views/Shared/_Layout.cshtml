@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="se">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="~/css/style.css" />
 
     <!--Typsnitt-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:600" rel="stylesheet">
 </head>
 <body>
     <header class="restaurantHeader" id="top">
-        <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.svg" class="logo" /></a>
+        <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.svg" class="logo" alt="Isola logo" /></a>
         <nav class="restaurantNav defaultMenu" id="navigation">
-            <img src="~/images/hamburger.svg" id="hamburger" />
+            <img src="~/images/hamburger.svg" id="hamburger" alt="mobilmeny" />
             <ul>
                 <li>
                     <a asp-area="" asp-controller="Home" asp-action="Index">Start</a>
@@ -41,7 +41,7 @@
         <div class="copyright">
             <p>&copy; @DateTime.Now.Year Isola Restaurang & Bar</p>
         </div>
-        <a href="#top" class="toTop"><img src="~/images/up-02.png"/></a>
+        <a href="#top" class="toTop"><img src="~/images/up-02.png" alt="Upp till toppen" /></a>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -35,12 +35,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="BookedDate" class="control-label">Datum</label>
-                <input asp-for="BookedDate" class="form-control" />
+                <input asp-for="BookedDate" class="form-control" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="BookedDate" class="text-danger"></span>
+                <span class="text-danger">@ViewData["noValidDay"]</span>
             </div>
             <div class="form-group">
                 <label asp-for="BookedTime" class="control-label">Tid</label>
-                <input asp-for="BookedTime" class="form-control" />
+                <input asp-for="BookedTime" class="form-control" min="16:00" max="22:00" step="900" />
                 <span asp-validation-for="BookedTime" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -25,7 +25,7 @@ namespace RestaurantIsolaApp.Controllers
         [HttpGet("/admin/menyer")]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Menu.Include(b => b.MenuFile);
+            var applicationDbContext = _context.Menu.Include(b => b.MenuFile).OrderBy(m => m.MenuName);
             return View(await applicationDbContext.ToListAsync());
         }
 

@@ -51,7 +51,7 @@ namespace RestaurantIsolaApp.Controllers
         [HttpGet("/admin/menyratter")]
         public async Task<IActionResult> AdminIndex(int? id)
         {
-            var dishes = from items in _context.MenuItem.Include(m => m.Menu)
+            var dishes = from items in _context.MenuItem.Include(m => m.Menu).OrderByDescending(m => m.CreateDate)
                       select items;
             if (id != null)
             {
@@ -81,7 +81,7 @@ namespace RestaurantIsolaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("/admin/ny-menyratt")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DishName,DishType,DishDescription,Price,MenuId")] MenuItem menuItem)
+        public async Task<IActionResult> Create([Bind("Id,DishName,DishType,DishDescription,Price,MenuId,CreateDate")] MenuItem menuItem)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace RestaurantIsolaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("/admin/edit-menyratt")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DishName,DishType,DishDescription,Price,MenuId")] MenuItem menuItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DishName,DishType,DishDescription,Price,MenuId,CreateDate")] MenuItem menuItem)
         {
             if (id != menuItem.Id)
             {

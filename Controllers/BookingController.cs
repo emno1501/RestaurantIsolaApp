@@ -28,7 +28,17 @@ namespace RestaurantIsolaApp.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Booking.Include(b => b.Restaurant);
-            return View(await applicationDbContext.ToListAsync());
+            foreach (var bookings in applicationDbContext)
+            {
+                if (bookings.BookedDate.Date < DateTime.Now.Date)
+                {
+                    var booking = await _context.Booking.FindAsync(bookings.Id);
+                    _context.Booking.Remove(booking);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            var currentBookings = _context.Booking.Include(b => b.Restaurant).OrderBy(b => b.BookedDate).ThenBy(b => b.BookedTime);
+            return View(await currentBookings.ToListAsync());
         }
 
         // GET: Booking/Create
@@ -73,12 +83,12 @@ namespace RestaurantIsolaApp.Controllers
                     bookingmail.SetSubject("Bekräftelse bordsbokning");
 
                     bookingmail.AddContent(MimeType.Html, "<p>Hej " + guestName +
-                        "!<br />Du har bokat bord på Isola Restaurang & Bar " + restaurantinfo.City + " " + booking.BookedDate +
-                        " klockan " + booking.BookedTime + ", för " + booking.NumbOfPersons + " personer.<br />Om du vill ändra eller avboka ditt bord kontakta oss på " + fromEmail +
+                        "!<br />Du har bokat bord på Isola Restaurang & Bar " + restaurantinfo.City + " " + booking.BookedDate.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) +
+                        " klockan " + booking.BookedTime.ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture) + ", för " + booking.NumbOfPersons + " personer.<br />Om du vill ändra eller avboka ditt bord kontakta oss på " + fromEmail +
                         " eller " + restaurantinfo.PhoneNr + ".<br />Välkommen!<br /><br />Isola Restaurang & Bar<p>");
                     bookingmail.AddContent(MimeType.Text, "Hej " + guestName +
-                        "!\nDu har bokat bord på Isola Restaurang & Bar " + restaurantinfo.City + " " + booking.BookedDate +
-                        " klockan " + booking.BookedTime + ", för " + booking.NumbOfPersons + " personer.\nOm du vill ändra eller avboka ditt bord kontakta oss på " + fromEmail +
+                        "!\nDu har bokat bord på Isola Restaurang & Bar " + restaurantinfo.City + " " + booking.BookedDate.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) +
+                        " klockan " + booking.BookedTime.ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture) + ", för " + booking.NumbOfPersons + " personer.\nOm du vill ändra eller avboka ditt bord kontakta oss på " + fromEmail +
                         " eller " + restaurantinfo.PhoneNr + ".\nVälkommen!\n\nIsola Restaurang & Bar");
 
                     await client.SendEmailAsync(bookingmail);
@@ -123,9 +133,14 @@ namespace RestaurantIsolaApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(booking);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (booking.BookedDate.DayOfWeek != 0)
+                {
+                    _context.Add(booking);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                    ViewData["noValidDay"] = "Söndagar är ej bokningsbara";
             }
             ViewData["RestaurantId"] = new SelectList(_context.Restaurant, "Id", "City", booking.RestaurantId);
             return View(booking);
@@ -164,23 +179,55 @@ namespace RestaurantIsolaApp.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                if (booking.BookedDate.DayOfWeek != 0)
                 {
-                    _context.Update(booking);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BookingExists(booking.Id))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(booking);
+                        await _context.SaveChangesAsync();
+
+                        // Bekräftelse-email
+                        var apiKey = System.Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
+                        var client = new SendGridClient(apiKey);
+
+                        var restaurantinfo = _context.Restaurant.Single(e => e.Id == booking.RestaurantId);
+                        var fromEmail = restaurantinfo.Email;
+                        var fromName = "Isola Restaurang & Bar " + restaurantinfo.City;
+                        var bookingmail = new SendGridMessage();
+                        bookingmail.SetFrom(new EmailAddress(fromEmail, fromName));
+
+                        var guestName = booking.FullName;
+                        var guestEmail = booking.Email;
+                        bookingmail.AddTo(new EmailAddress(guestEmail, guestName));
+
+                        bookingmail.SetSubject("Bekräftelse bordsbokning");
+
+                        bookingmail.AddContent(MimeType.Html, "<p>Hej " + guestName +
+                            "!<br />Din bokning på Isola Restaurang & Bar " + restaurantinfo.City + " har ändrats. <br />Ny bokning: " + booking.BookedDate.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) +
+                            " klockan " + booking.BookedTime.ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture) + ", för " + booking.NumbOfPersons + " personer.<br />Om du vill ändra eller avboka ditt bord kontakta oss på " + fromEmail +
+                            " eller " + restaurantinfo.PhoneNr + ".<br />Välkommen!<br /><br />Isola Restaurang & Bar<p>");
+                        bookingmail.AddContent(MimeType.Text, "Hej " + guestName +
+                            "!\nDin bokning på Isola Restaurang & Bar " + restaurantinfo.City + " har ändrats.\nNy bokning: " + booking.BookedDate.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) +
+                            " klockan " + booking.BookedTime.ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture) + ", för " + booking.NumbOfPersons + " personer.\nOm du vill ändra eller avboka ditt bord kontakta oss på " + fromEmail +
+                            " eller " + restaurantinfo.PhoneNr + ".\nVälkommen!\n\nIsola Restaurang & Bar");
+
+                        await client.SendEmailAsync(bookingmail);
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!BookingExists(booking.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+                else
+                    ViewData["noValidDay"] = "Söndagar är ej bokningsbara";
             }
             ViewData["RestaurantId"] = new SelectList(_context.Restaurant, "Id", "Adress", booking.RestaurantId);
             return View(booking);

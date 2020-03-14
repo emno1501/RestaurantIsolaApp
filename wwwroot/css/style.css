@@ -8,7 +8,7 @@ p, a, label, input, textarea, select, .btn, .form-control, td, th, dd, dt {
     font-family: "Lato", sans-serif;
     font-size: 1.5rem;
     line-height: 1.6em;
-    font-weight: 300;
+    font-weight: 400;
 }
 th, .btn, dt {
     font-weight: 700;
@@ -318,6 +318,7 @@ footer p, footer a, footer h4 {
 }
 #menuContainer {
     width: 80%;
+    max-width: 990px;
     margin: 0 auto;
     overflow: auto;
 }
@@ -328,7 +329,7 @@ footer p, footer a, footer h4 {
     margin-bottom: 20px;
 }
 #menuContainer h3 span {
-    font-weight: 300;
+    font-weight: 400;
 }
 #starters, #mains, #desserts {
     float: left;
@@ -385,7 +386,7 @@ input.btn:hover, .form-group .btn:hover, .btn-primary:hover, a.btn:hover {
     color: black;
 }
 .confirmationBox { /*Bokningsbekräftelse*/
-    height: 300px;
+    height: 700px;
     width: 100%;
     padding-top: 60px;
     text-align: center;

@@ -24,7 +24,7 @@ namespace RestaurantIsolaApp.Controllers
 
         // GET: MenuFile
         [Authorize]
-        [HttpGet("/admin/menu-files")]
+        [HttpGet("/admin/menyfiler")]
         public async Task<IActionResult> Index(int? id)
         {
             if (id != null)
@@ -41,7 +41,7 @@ namespace RestaurantIsolaApp.Controllers
 
         // GET: MenuFile/Create
         [Authorize]
-        [HttpGet("/admin/menu-upload")]
+        [HttpGet("/admin/meny-ladda-upp")]
         public IActionResult Create()
         {
             
@@ -52,7 +52,7 @@ namespace RestaurantIsolaApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
-        [HttpPost("/admin/menu-upload")]
+        [HttpPost("/admin/meny-ladda-upp")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload()
         {
@@ -77,6 +77,8 @@ namespace RestaurantIsolaApp.Controllers
         }
 
         // GET: MenuFile/Delete/5
+        [Authorize]
+        [HttpGet("/admin/menyfil-ta-bort")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -95,7 +97,8 @@ namespace RestaurantIsolaApp.Controllers
         }
 
         // POST: MenuFile/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [Authorize]
+        [HttpPost("/admin/menyfil-ta-bort"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
