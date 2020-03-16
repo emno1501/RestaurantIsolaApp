@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:600" rel="stylesheet">
 </head>
 <body>
-    <header class="restaurantHeader" id="top">
+    <header class="restaurantHeader" id="top" role="banner">
         <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.svg" class="logo" alt="Isola logo" /></a>
-        <nav class="restaurantNav defaultMenu" id="navigation">
+        <nav class="restaurantNav defaultMenu" id="navigation" role="navigation">
             <img src="~/images/hamburger.svg" id="hamburger" alt="mobilmeny" />
             <ul>
                 <li>
@@ -36,7 +36,7 @@
         </main>
     </div>
 
-    <footer>
+    <footer role="contentinfo">
         <partial name="_FooterInfoPartial" />
         <div class="copyright">
             <p>&copy; @DateTime.Now.Year Isola Restaurang & Bar</p>

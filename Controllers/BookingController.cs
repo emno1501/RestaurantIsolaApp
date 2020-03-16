@@ -28,15 +28,20 @@ namespace RestaurantIsolaApp.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Booking.Include(b => b.Restaurant);
-            foreach (var bookings in applicationDbContext)
+            var highestId = applicationDbContext.Max(i => i.Id);
+            for (var i = highestId; i > 0; i--)
             {
-                if (bookings.BookedDate.Date < DateTime.Now.Date)
+                var booking = await _context.Booking.FindAsync(i);
+                if (booking != null)
                 {
-                    var booking = await _context.Booking.FindAsync(bookings.Id);
-                    _context.Booking.Remove(booking);
-                    await _context.SaveChangesAsync();
+                    if (booking.BookedDate.Date <= DateTime.Now.Date && booking.BookedTime.TimeOfDay < DateTime.Now.TimeOfDay)
+                    {
+                        _context.Booking.Remove(booking);
+                        await _context.SaveChangesAsync();
+                    }
                 }
             }
+
             var currentBookings = _context.Booking.Include(b => b.Restaurant).OrderBy(b => b.BookedDate).ThenBy(b => b.BookedTime);
             return View(await currentBookings.ToListAsync());
         }
@@ -229,7 +234,7 @@ namespace RestaurantIsolaApp.Controllers
                 else
                     ViewData["noValidDay"] = "Söndagar är ej bokningsbara";
             }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurant, "Id", "Adress", booking.RestaurantId);
+            ViewData["RestaurantId"] = new SelectList(_context.Restaurant, "Id", "City", booking.RestaurantId);
             return View(booking);
         }
 

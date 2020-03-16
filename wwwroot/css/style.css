@@ -129,7 +129,7 @@ nav {
     height: auto;
 }
 .aboutBox {
-    padding: 60px;
+    padding: 60px 0;
     width: 100%;
     background-color: #f2f2ed;
 }
@@ -151,7 +151,7 @@ nav {
     height: 100px;
 }
 .startMenuBox {
-    background-color: #598f9c;
+    background-color: #507C8B;
     padding: 60px 0;
     width: 100%;
     text-align: center;
@@ -179,7 +179,7 @@ nav {
     margin-bottom: 40px;
 }
 .startBookingBox .btnBeige:hover {
-    background-color: #598f9c;
+    background-color: #507C8B;
     color: white;
 }
 
@@ -191,6 +191,12 @@ footer {
 }
 footer p, footer a, footer h4 {
     color: white;
+}
+#mailLink {
+    text-decoration: underline;
+}
+#mailLink:hover {
+    color: #e8c458;
 }
 .openHours, .copyright {
     margin-left: 35px;
@@ -219,7 +225,7 @@ footer p, footer a, footer h4 {
     top: 20px;
 }
 .toTop:hover {
-    background-color: #598f9c;
+    background-color: #507C8B;
 }
 .toTop img {
     width: 30px;
@@ -340,7 +346,7 @@ footer p, footer a, footer h4 {
     margin-bottom: 20px;
 }
 #fullMenu {
-    background-color: #598f9c;
+    background-color: #507C8B;
     width: 100%;
     padding: 40px 0 50px 0;
     text-align: center;
