@@ -459,6 +459,9 @@ input.btn:hover, .form-group .btn:hover, .btn-primary:hover, a.btn:hover {
     color: white;
     text-decoration: none;
 }
+.tableBox {
+    overflow-x: auto;
+}
 @media screen and (max-width: 750px) {
     .container {
         max-width: 100%;
@@ -505,9 +508,7 @@ input.btn:hover, .form-group .btn:hover, .btn-primary:hover, a.btn:hover {
         padding-top: 40px;
         padding-left: 25px;
     }
-    .tableBox {
-        overflow-x: auto;
-    }
+    
 }
 @media screen and (max-width: 576px) {
     .logoAdmin {
